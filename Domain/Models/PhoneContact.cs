@@ -17,6 +17,6 @@ namespace Domain.Models
         public string FormatedPhone { get; set; }
 
         public int ContactPhoneTypeId { get; set; }
-        public ContactPhoneType TipoContatoTelefone { get; set; }
+        public PhoneContactType TipoContatoTelefone { get; set; }
     }
 }

@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public class ContactPhoneType : Enumeration
+    public class PhoneContactType : Enumeration
     {
-        public static ContactPhoneType Casa = new(1, "Casa");
-        public static ContactPhoneType Comercial = new(2, "Comercial");
-        public static ContactPhoneType Celular = new(3, "Celular");
+        public static PhoneContactType Casa = new(1, "Casa");
+        public static PhoneContactType Comercial = new(2, "Comercial");
+        public static PhoneContactType Celular = new(3, "Celular");
 
-        public ContactPhoneType() { }
-        public ContactPhoneType(int id, string name) : base(id, name) { }
+        public PhoneContactType() { }
+        public PhoneContactType(int id, string name) : base(id, name) { }
     }
 }
