@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace Domain.Core
 {
@@ -14,10 +11,13 @@ namespace Domain.Core
         public int Id { get; private set; }
         public string Name { get; private set; }
 
-        protected Enumeration() { }
+        protected Enumeration()
+        { }
+
         protected Enumeration(int id, string name) => (Id, Name) = (id, name);
 
         public override string ToString() => Name;
+
         public static IEnumerable<T> GetAll<T>() where T : Enumeration =>
             typeof(T).GetFields(BindingFlags.Public |
                                 BindingFlags.Static |

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Core;
+﻿using Domain.Core;
 using Domain.Models;
 using Domain.Models.Auth;
 using Infrastructure.Data.Mappings.Base;
 using Infrastructure.Utils;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace Infrastructure.Data
 {

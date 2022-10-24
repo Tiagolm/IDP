@@ -1,11 +1,9 @@
-﻿
-// Copyright (c) .NET Foundation. All rights reserved.
+﻿// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace Infrastructure.Utils
 {
@@ -41,6 +39,7 @@ namespace Infrastructure.Utils
 
             return Convert.ToBase64String(HashPasswordV3(password, _rng));
         }
+
         /// <summary>
         /// Returns a <see cref="PasswordVerificationResult"/> indicating the result of a password hash comparison.
         /// </summary>
@@ -74,6 +73,7 @@ namespace Infrastructure.Utils
 
             return false;
         }
+
         private static byte[] HashPasswordV3(string password, RandomNumberGenerator rng)
         {
             return HashPasswordV3(password, rng,
@@ -99,6 +99,7 @@ namespace Infrastructure.Utils
             Buffer.BlockCopy(subkey, 0, outputBytes, 13 + saltSize, subkey.Length);
             return outputBytes;
         }
+
         private static uint ReadNetworkByteOrder(byte[] buffer, int offset)
         {
             return ((uint)(buffer[offset + 0]) << 24)
@@ -106,6 +107,7 @@ namespace Infrastructure.Utils
                 | ((uint)(buffer[offset + 2]) << 8)
                 | ((uint)(buffer[offset + 3]));
         }
+
         private static bool VerifyHashedPasswordV3(byte[] hashedPassword, string password)
         {
             try
