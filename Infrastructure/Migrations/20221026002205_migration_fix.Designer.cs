@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20221025013650_initial_migration")]
-    partial class initial_migration
+    [Migration("20221026002205_migration_fix")]
+    partial class migration_fix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -65,7 +65,7 @@ namespace Infrastructure.Migrations
                             Id = 1,
                             CreatedAt = new DateTime(2021, 10, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Admin Root Application",
-                            Password = "AQAAAAEAAAPoAAAAEHz/KozFNB/J5qq6ND0p54DK3bWWNavo4PQDaaQrVOP2vrXODbnsOreHzYWTXi7XOQ==",
+                            Password = "AQAAAAEAAAPoAAAAEPAMF4fHijEKuvlGANCF8KCWD2l+Qn3Il6d6/DjayHADFXgc+IQADl0Ino5pe8Z03w==",
                             UserRoleId = 1,
                             Username = "admin"
                         });
@@ -109,7 +109,7 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -158,7 +158,7 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TipoContatoTelefoneId")
+                    b.Property<int>("PhoneContactTypeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -168,7 +168,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("ContactId");
 
-                    b.HasIndex("TipoContatoTelefoneId");
+                    b.HasIndex("PhoneContactTypeId");
 
                     b.ToTable("PhoneContacts");
                 });
@@ -231,26 +231,26 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Models.PhoneContact", b =>
                 {
-                    b.HasOne("Domain.Models.Contact", "Contato")
-                        .WithMany("Telefones")
+                    b.HasOne("Domain.Models.Contact", "Contact")
+                        .WithMany("Phones")
                         .HasForeignKey("ContactId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Models.PhoneContactType", "TipoContatoTelefone")
+                    b.HasOne("Domain.Models.PhoneContactType", "PhoneContactType")
                         .WithMany()
-                        .HasForeignKey("TipoContatoTelefoneId")
+                        .HasForeignKey("PhoneContactTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Contato");
+                    b.Navigation("Contact");
 
-                    b.Navigation("TipoContatoTelefone");
+                    b.Navigation("PhoneContactType");
                 });
 
             modelBuilder.Entity("Domain.Models.Contact", b =>
                 {
-                    b.Navigation("Telefones");
+                    b.Navigation("Phones");
                 });
 #pragma warning restore 612, 618
         }
