@@ -63,7 +63,7 @@ namespace Infrastructure.Migrations
                             Id = 1,
                             CreatedAt = new DateTime(2021, 10, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Admin Root Application",
-                            Password = "AQAAAAEAAAPoAAAAEHz/KozFNB/J5qq6ND0p54DK3bWWNavo4PQDaaQrVOP2vrXODbnsOreHzYWTXi7XOQ==",
+                            Password = "AQAAAAEAAAPoAAAAELTBzp20JCqqXurxJxk9AQArgmiKjHLnkPT5cgxh9JFqYgcxbP9LCCEOw+s+HD3M0Q==",
                             UserRoleId = 1,
                             Username = "admin"
                         });
@@ -107,7 +107,7 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -135,9 +135,6 @@ namespace Infrastructure.Migrations
                     b.Property<int>("ContactId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ContactPhoneTypeId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -148,7 +145,7 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FormatedPhone")
+                    b.Property<string>("FormattedPhone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -156,7 +153,7 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TipoContatoTelefoneId")
+                    b.Property<int>("PhoneContactTypeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -166,7 +163,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("ContactId");
 
-                    b.HasIndex("TipoContatoTelefoneId");
+                    b.HasIndex("PhoneContactTypeId");
 
                     b.ToTable("PhoneContacts");
                 });
@@ -229,26 +226,26 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Models.PhoneContact", b =>
                 {
-                    b.HasOne("Domain.Models.Contact", "Contato")
-                        .WithMany("Telefones")
+                    b.HasOne("Domain.Models.Contact", "Contact")
+                        .WithMany("Phones")
                         .HasForeignKey("ContactId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Models.PhoneContactType", "TipoContatoTelefone")
+                    b.HasOne("Domain.Models.PhoneContactType", "PhoneContactType")
                         .WithMany()
-                        .HasForeignKey("TipoContatoTelefoneId")
+                        .HasForeignKey("PhoneContactTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Contato");
+                    b.Navigation("Contact");
 
-                    b.Navigation("TipoContatoTelefone");
+                    b.Navigation("PhoneContactType");
                 });
 
             modelBuilder.Entity("Domain.Models.Contact", b =>
                 {
-                    b.Navigation("Telefones");
+                    b.Navigation("Phones");
                 });
 #pragma warning restore 612, 618
         }

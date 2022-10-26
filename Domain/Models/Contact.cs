@@ -7,7 +7,7 @@ namespace Domain.Models
     {
         public int UserId { get; set; }
         public User User { get; set; }
-        public string Nome { get; set; }
-        public IEnumerable<PhoneContact> Telefones { get; set; }
+        public string Name { get; set; }
+        public IEnumerable<PhoneContact> Phones { get; set; }
     }
 }
