@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Application.ViewModels.User
+﻿namespace Application.ViewModels.User
 {
-    internal class UserRequest
+    public class UserRequest
     {
         public int UserRoleId { get; set; }
         public string Name { get; set; }
