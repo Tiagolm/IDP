@@ -1,15 +1,10 @@
 ﻿using Domain.Core;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repository
 {
-    internal class BaseRepository<T> : IBaseRepository<T> where T : Entity
+    public class BaseRepository<T> : IBaseRepository<T> where T : Entity
     {
         private readonly DbSet<T> _set;
         public IQueryable<T> Query { get; private set; }
@@ -28,6 +23,7 @@ namespace Infrastructure.Repository
         {
             await _set.AddAsync(obj);
         }
+
         public Task Update(T obj)
         {
             _set.Update(obj);
@@ -37,7 +33,6 @@ namespace Infrastructure.Repository
         public async Task Delete(int id)
         {
             var obj = await _set.FirstOrDefaultAsync(x => x.Id == id);
-
 
             if (obj == null)
                 throw new InvalidOperationException($"Id: {id} para remover {typeof(T).Name} é invalido");
