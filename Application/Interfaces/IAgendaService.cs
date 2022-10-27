@@ -1,19 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Application.SearchParams;
+using Application.ViewModels.Contact;
+using Application.ViewModels.PhoneContact;
+using Application.ViewModels.PhoneContactType;
+using Domain.Core;
 
 namespace Application.Interfaces
 {
     public interface IAgendaService
     {
-        Task<PaginationResult<ContatoResponse>> BuscarContatos(ContatoParametroBusca viewModel);
-        Task<IEnumerable<ContatoTelefoneResponse>> BuscarTelefones(ContatoParametroBusca viewModel);
-        IEnumerable<TipoContatoTelefoneResponse> TiposContatoTelefone();
-        Task<ContatoResponse> ObterContato(int id);
-        Task<ContatoResponse> AdicionarContato(ContatoRequest contatoViewModel);
-        Task<ContatoResponse> AtualizarContato(int id, ContatoRequest contatoViewModel);
-        Task RemoverContato(int id);
+        Task<PaginationResult<ContactResponse>> GetCcontacts(ContactQueryParam viewModel);
+
+        Task<IEnumerable<PhoneContactResponse>> SearchPhones(ContactQueryParam viewModel);
+
+        IEnumerable<PhoneContactTypeResponse> PhoneContactTypes();
+
+        Task<ContactResponse> GetContact(int id);
+
+        Task<ContactResponse> AddContact(ContactRequest contactViewModel);
+
+        Task<ContactResponse> UpdateContact(int id, ContactRequest contactViewModel);
+
+        Task RemoveContact(int id);
     }
 }
