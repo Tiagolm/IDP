@@ -1,6 +1,5 @@
 ﻿using Application.Interfaces;
 using Application.ViewModels.Login;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -10,12 +9,13 @@ namespace API.Controllers
     public class LoginController : ControllerBase
     {
         private readonly ILoginService _loginService;
+
         public LoginController(ILoginService loginService)
         {
             _loginService = loginService;
         }
 
-        [HttpPost("login")]
+        [HttpPost]
         public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
         {
             var response = await _loginService.Authenticate(loginRequest);
