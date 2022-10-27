@@ -1,11 +1,10 @@
-﻿using Application.Interfaces;
+﻿using Application.Exceptions;
+using Application.Interfaces;
 using Application.ViewModels.Login;
+using Domain.Interfaces;
+using Infrastructure.Auth;
 using Infrastructure.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Services
 {
@@ -14,6 +13,7 @@ namespace Application.Services
         private readonly IUserRepository _userRepository;
         private readonly IRequestValidator<LoginRequest> _requestValidator;
         private readonly IJwtGeneratorService _jwtGenerator;
+
         public LoginService(
             IUserRepository userRepository,
             IRequestValidator<LoginRequest> requestValidator,
@@ -41,9 +41,8 @@ namespace Application.Services
             if (user == null)
                 throw new BadRequestException(nameof(model.Username), "Não existe usuário com Username informado.");
 
-
-            if (!PasswordHasher.Verify(model.Senha, user.Senha))
-                throw new BadRequestException(nameof(model.Senha), "Senha inválida.");
+            if (!PasswordHasher.Verify(model.Password, user.Password))
+                throw new BadRequestException(nameof(model.Password), "Senha inválida.");
 
             // authentication successful
             var token = _jwtGenerator.GenerateToken(user);
