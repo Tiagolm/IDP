@@ -17,8 +17,8 @@ namespace Application.Validators
             RuleFor(x => x.Description)
                 .MaximumLength(200);
 
-            RuleFor(x => x.PhoneContactTypeIdId)
-                .Must(phoneContactTypeIdId => Enumeration.GetAll<PhoneContactType>().Any(x => x.Id == phoneContactTypeIdId))
+            RuleFor(x => x.PhoneContactTypeId)
+                .Must(phoneContactTypeId => Enumeration.GetAll<PhoneContactType>().Any(x => x.Id == phoneContactTypeId))
                 .WithMessage("Não existe tipo de telefone informado.");
 
             RuleFor(x => x.FormattedPhone)
@@ -28,12 +28,12 @@ namespace Application.Validators
             RuleFor(x => x.FormattedPhone)
                 .Must(tel => tel.ValidateHomePhone())
                 .WithMessage("{PropertyName}: {PropertyValue} - Telefone residencial inválido: (xx) xxxxx-xxxx")
-                .When(vm => vm.PhoneContactTypeIdId == PhoneContactType.Casa.Id);
+                .When(vm => vm.PhoneContactTypeId == PhoneContactType.Casa.Id);
 
             RuleFor(x => x.FormattedPhone)
                 .Must(tel => tel.ValidateCellPhone())
                 .WithMessage("{PropertyName}: {PropertyValue} - Telefone celular inválido: (xx) xxxxx-xxxx")
-                .When(vm => vm.PhoneContactTypeIdId == PhoneContactType.Celular.Id);
+                .When(vm => vm.PhoneContactTypeId == PhoneContactType.Celular.Id);
 
             RuleFor(x => x.FormattedPhone)
                 .MustAsync(contatoRepository.PhoneExists)

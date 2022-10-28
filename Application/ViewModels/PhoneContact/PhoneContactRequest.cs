@@ -2,7 +2,7 @@
 {
     public class PhoneContactRequest
     {
-        public int PhoneContactTypeIdId { get; set; }
+        public int PhoneContactTypeId { get; set; }
         public string Description { get; set; }
         public string FormattedPhone { get; set; }
     }
