@@ -30,9 +30,8 @@ namespace Infrastructure.Repository
             if (!string.IsNullOrEmpty(numero))
                 query = query.Include(x => x.Phones.Where(tel => tel.Phone.Contains(numero, StringComparison.InvariantCultureIgnoreCase)));
 
-            // envia consulta para o banco de dados
             var list = await query.ToListAsync();
-            // lista apenas contatos com telefones
+
             return list.Where(x => x.Phones.Any());
         }
 
