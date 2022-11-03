@@ -21,13 +21,13 @@ namespace Application.Services
         private readonly IRequestValidator<ContactRequest> _requestValidator;
 
         public PhonebookService(
-            IContactRepository contatoRepository,
+            IContactRepository contactRepository,
             IUnitOfWork unitOfWork,
             IMapper mapper,
             IAuthService authService,
             IRequestValidator<ContactRequest> requestValidator)
         {
-            _contactRepository = contatoRepository;
+            _contactRepository = contactRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _authService = authService;
@@ -38,7 +38,7 @@ namespace Application.Services
 
         public async Task<ContactResponse> GetContact(int id)
         {
-            var contato = await _contactRepository
+            var contact = await _contactRepository
                 .Query
                 .AsNoTracking()
                 .Include(x => x.Phones)
@@ -47,7 +47,7 @@ namespace Application.Services
 
             await _unitOfWork.Save();
 
-            return _mapper.Map<ContactResponse>(contato);
+            return _mapper.Map<ContactResponse>(contact);
         }
 
         public async Task<ContactResponse> AddContact(ContactRequest contactViewModel)
@@ -57,14 +57,14 @@ namespace Application.Services
             if (!validate.IsValid)
                 throw new BadRequestException(validate);
 
-            var contato = _mapper.Map<Contact>(contactViewModel);
+            var contact = _mapper.Map<Contact>(contactViewModel);
 
-            contato.UserId = _authService.LoggedUser.Id;
+            contact.UserId = _authService.LoggedUser.Id;
 
-            await _contactRepository.Add(contato);
+            await _contactRepository.Add(contact);
             await _unitOfWork.Save();
 
-            return await GetContact(contato.Id);
+            return await GetContact(contact.Id);
         }
 
         public async Task<ContactResponse> UpdateContact(int id, ContactRequest contactViewModel)
@@ -124,7 +124,7 @@ namespace Application.Services
 
         public async Task<IEnumerable<PhoneContactResponse>> SearchPhones(ContactQueryParam viewModel)
         {
-            var list = await _contactRepository.Search(viewModel.IdContato, viewModel.ContactName, viewModel.Ddd, viewModel.Number);            
+            var list = await _contactRepository.Search(viewModel.ContactId, viewModel.ContactName, viewModel.Ddd, viewModel.Number);            
             await _unitOfWork.Save();
 
             return _mapper.Map<IEnumerable<PhoneContactResponse>>(list.SelectMany(x => x.Phones));

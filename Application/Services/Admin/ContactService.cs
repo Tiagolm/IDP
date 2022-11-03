@@ -23,12 +23,12 @@ namespace Application.Services.Admin
         private readonly IRequestValidator<AdminContactRequest> _requestValidator;
 
         public ContactService(
-            IContactRepository contatoRepository,
+            IContactRepository contactRepository,
             IUnitOfWork unitOfWork,
             IMapper mapper,
             IRequestValidator<AdminContactRequest> requestValidator)
         {
-            _contactRepository = contatoRepository;
+            _contactRepository = contactRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _requestValidator = requestValidator;

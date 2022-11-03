@@ -12,7 +12,7 @@ namespace Application.Validators
         AbstractValidator<PhoneContactRequest>,
         IRequestValidator<PhoneContactRequest>
     {
-        public PhoneContactRequestValidator(IContactRepository contatoRepository)
+        public PhoneContactRequestValidator(IContactRepository contactRepository)
         {
             RuleFor(x => x.Description)
                 .MaximumLength(200);
@@ -36,7 +36,7 @@ namespace Application.Validators
                 .When(vm => vm.PhoneContactTypeId == PhoneContactType.Celular.Id);
 
             RuleFor(x => x.FormattedPhone)
-                .MustAsync(contatoRepository.PhoneExists)
+                .MustAsync(contactRepository.PhoneExists)
                 .WithMessage("Telefone já existe {PropertyName}: {PropertyValue}");
         }
     }

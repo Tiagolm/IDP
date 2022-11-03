@@ -7,14 +7,14 @@ namespace Application.Validators
 {
     public class ContactRequestValidator : AbstractValidator<ContactRequest>, IRequestValidator<ContactRequest>
     {
-        public ContactRequestValidator(IContactRepository contatoRepository)
+        public ContactRequestValidator(IContactRepository contactRepository)
         {
             RuleFor(x => x.Name)
                 .NotEmpty()
                 .MaximumLength(200);
 
             RuleForEach(x => x.Phones)
-                .SetValidator(new PhoneContactRequestValidator(contatoRepository));
+                .SetValidator(new PhoneContactRequestValidator(contactRepository));
 
             RuleFor(x => x.Phones)
                 .Must(phones => phones.GroupBy(x => x.FormattedPhone).All(group => group.Count() == 1))

@@ -6,7 +6,7 @@ namespace Application.SearchParams
 {
     public class ContactQueryParam : PaginationQueryParamBase<Contact>
     {
-        public int? IdContato { get; set; }
+        public int? ContactId { get; set; }
         public string? ContactName { get; set; }
         public int? Ddd { get; set; }
         public string? Number { get; set; }
@@ -19,8 +19,8 @@ namespace Application.SearchParams
             .ThenInclude(c => c.PhoneContactType));
 
 
-            if (IdContato.HasValue)
-                AddQuery(x => x.Where(c => c.Id == IdContato));
+            if (ContactId.HasValue)
+                AddQuery(x => x.Where(c => c.Id == ContactId));
 
             if (!string.IsNullOrEmpty(ContactName))
                 AddQuery(x => x.Where(c => EF.Functions.Like(c.Name, $"%{ContactName}%")));

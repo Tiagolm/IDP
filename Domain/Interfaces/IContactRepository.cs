@@ -5,7 +5,7 @@ namespace Domain.Interfaces
 {
     public interface IContactRepository : IBaseRepository<Contact>, IQueryParamRepository<Contact>
     {
-        Task<IEnumerable<Contact>> Search(int? idContato, string nomeContato, int? ddd, string numero);
+        Task<IEnumerable<Contact>> Search(int? contactId, string contactName, int? ddd, string number);
 
         Task<IEnumerable<Contact>> SearchPhones(string phone);
 

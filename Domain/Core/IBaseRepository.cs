@@ -8,9 +8,9 @@
 
         Task<T> GetById(int id);
 
-        Task Add(T contato);
+        Task Add(T contact);
 
-        Task Update(T contato);
+        Task Update(T contact);
 
         Task Delete(int id);
 
