@@ -55,7 +55,7 @@ namespace Infrastructure.Repository
 
         public Task<bool> PhoneExists(string formattedPhone, CancellationToken token)
         {
-            return Query.Include(x => x.Phones).SelectMany(x => x.Phones).AllAsync(x => x.FormattedPhone == formattedPhone, token);
+            return Query.Include(x => x.Phones).SelectMany(x => x.Phones).AllAsync(x => x.FormattedPhone != formattedPhone, token);
         }
 
         public async Task<IEnumerable<Contact>> FilterAsync(IQueryParam<Contact> queryParam)
