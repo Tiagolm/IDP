@@ -5,11 +5,13 @@ VisualStudioVersion = 17.4.32912.340
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "IDP\API.csproj", "{CEC560CA-F203-4081-AB88-BBE786C7F08F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{69D6D448-A5E2-40BC-9FD6-8FF0A71324F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{69D6D448-A5E2-40BC-9FD6-8FF0A71324F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{68136D53-788F-40A9-96BC-B58DB86ED5A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{68136D53-788F-40A9-96BC-B58DB86ED5A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{5888A042-199D-4FAA-B462-CFA6A98BA169}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{5888A042-199D-4FAA-B462-CFA6A98BA169}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{B49EEAAE-CA4E-4167-BB56-15613FDFA405}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{5888A042-199D-4FAA-B462-CFA6A98BA169}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5888A042-199D-4FAA-B462-CFA6A98BA169}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5888A042-199D-4FAA-B462-CFA6A98BA169}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B49EEAAE-CA4E-4167-BB56-15613FDFA405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B49EEAAE-CA4E-4167-BB56-15613FDFA405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B49EEAAE-CA4E-4167-BB56-15613FDFA405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B49EEAAE-CA4E-4167-BB56-15613FDFA405}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
