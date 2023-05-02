@@ -63,7 +63,7 @@ namespace Infrastructure.Migrations
                             Id = 1,
                             CreatedAt = new DateTime(2021, 10, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Admin Root Application",
-                            Password = "AQAAAAEAAAPoAAAAELTBzp20JCqqXurxJxk9AQArgmiKjHLnkPT5cgxh9JFqYgcxbP9LCCEOw+s+HD3M0Q==",
+                            Password = "AQAAAAEAAAPoAAAAEOX41A3Isf1yTd5exQv7DfcLHXwgkk9bnOUH6y5DHiCIZkH1uJdGqs+zSd2QPWcoWA==",
                             UserRoleId = 1,
                             Username = "admin"
                         });
