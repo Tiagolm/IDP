@@ -1,27 +1,30 @@
 ﻿using Domain.Core;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Infrastructure.Repository
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : Entity
     {
         private readonly DbSet<T> _set;
-        public IQueryable<T> Query { get; private set; }
+        public IQueryable<T> Query { get; set; }
 
-        protected BaseRepository(ApplicationContext applicationContext)
+        public BaseRepository(ApplicationContext applicationContext)
         {
             _set = applicationContext.Set<T>();
 
             if (_set == null)
                 throw new InvalidOperationException($"Tipo inválido de DbSet: {typeof(T).Name}");
-
+            
             Query = _set.AsQueryable();
         }
 
-        public async Task Add(T obj)
+        public async Task<T> Add(T obj)
         {
             await _set.AddAsync(obj);
+            return obj;
+            
         }
 
         public Task Update(T obj)

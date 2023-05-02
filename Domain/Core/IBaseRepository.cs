@@ -1,4 +1,6 @@
-﻿namespace Domain.Core
+﻿using System.Collections.Generic;
+
+namespace Domain.Core
 {
     public interface IBaseRepository<T> where T : Entity
     {
@@ -8,7 +10,7 @@
 
         Task<T> GetById(int id);
 
-        Task Add(T contact);
+        Task<T> Add(T obj);
 
         Task Update(T contact);
 
