@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20221026002513_migration_fix_names")]
-    partial class migration_fix_names
+    [Migration("20230501235833_initial_migration")]
+    partial class initial_migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -65,7 +65,7 @@ namespace Infrastructure.Migrations
                             Id = 1,
                             CreatedAt = new DateTime(2021, 10, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Admin Root Application",
-                            Password = "AQAAAAEAAAPoAAAAELTBzp20JCqqXurxJxk9AQArgmiKjHLnkPT5cgxh9JFqYgcxbP9LCCEOw+s+HD3M0Q==",
+                            Password = "AQAAAAEAAAPoAAAAEOX41A3Isf1yTd5exQv7DfcLHXwgkk9bnOUH6y5DHiCIZkH1uJdGqs+zSd2QPWcoWA==",
                             UserRoleId = 1,
                             Username = "admin"
                         });

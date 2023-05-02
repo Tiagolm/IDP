@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -64,7 +65,7 @@ namespace Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -91,7 +92,6 @@ namespace Infrastructure.Migrations
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FormattedPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneContactTypeId = table.Column<int>(type: "int", nullable: false),
-                    TipoContatoTelefoneId = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -105,8 +105,8 @@ namespace Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PhoneContacts_PhoneContactTypes_TipoContatoTelefoneId",
-                        column: x => x.TipoContatoTelefoneId,
+                        name: "FK_PhoneContacts_PhoneContactTypes_PhoneContactTypeId",
+                        column: x => x.PhoneContactTypeId,
                         principalTable: "PhoneContactTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -134,7 +134,7 @@ namespace Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "CreatedAt", "Name", "Password", "UpdatedAt", "UserRoleId", "Username" },
-                values: new object[] { 1, new DateTime(2021, 10, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "Admin Root Application", "AQAAAAEAAAPoAAAAEHz/KozFNB/J5qq6ND0p54DK3bWWNavo4PQDaaQrVOP2vrXODbnsOreHzYWTXi7XOQ==", null, 1, "admin" });
+                values: new object[] { 1, new DateTime(2021, 10, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "Admin Root Application", "AQAAAAEAAAPoAAAAEOX41A3Isf1yTd5exQv7DfcLHXwgkk9bnOUH6y5DHiCIZkH1uJdGqs+zSd2QPWcoWA==", null, 1, "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Contacts_UserId",
@@ -147,9 +147,9 @@ namespace Infrastructure.Migrations
                 column: "ContactId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PhoneContacts_TipoContatoTelefoneId",
+                name: "IX_PhoneContacts_PhoneContactTypeId",
                 table: "PhoneContacts",
-                column: "TipoContatoTelefoneId");
+                column: "PhoneContactTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_UserRoleId",
