@@ -39,11 +39,7 @@ namespace Application.Services
         public async Task<ContactResponse> GetContact(int id)
         {
             var contact = await _contactRepository
-                .Query
-                .AsNoTracking()
-                .Include(x => x.Phones)
-                .ThenInclude(x => x.PhoneContactType)
-                .FirstOrDefaultAsync(x => x.Id == id);
+                .GetById(id);
 
             await _unitOfWork.Save();
 

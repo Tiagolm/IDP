@@ -51,7 +51,7 @@ namespace Tests.Application.Services
             contact.Phones = phones;
 
             _contactRepository.Setup(x => x.GetById(It.IsAny<int>())).Returns(Task.FromResult(contact));
-
+            
             var phonebookService = new PhonebookService(_contactRepository.Object, _unitOfWork.Object, _mapper, _authService.Object, _contactValidator);
 
             //Act
