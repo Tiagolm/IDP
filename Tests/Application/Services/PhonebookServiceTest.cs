@@ -15,6 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tests.Fakers.Models;
+using Tests.Fakers.Requests.ContactRequests;
 using Xunit;
 
 namespace Tests.Application.Services
@@ -62,9 +63,48 @@ namespace Tests.Application.Services
 
             result.Should().NotBeNull();
             result.Name.Should().Be(contact.Name);
-            result.Phones.Should().BeEquivalentTo(contact.Phones);
+            result.Phones.Select(c => c.Description).Should().Equal(contact.Phones.Select(c => c.Description));
+            result.Phones.Select(c => c.Ddd).Should().Equal(contact.Phones.Select(c => c.Ddd));
+            result.Phones.Select(c => c.Phone).Should().Equal(contact.Phones.Select(c => c.Phone));
+            result.Phones.Select(c => c.FormattedPhone).Should().Equal(contact.Phones.Select(c => c.FormattedPhone));
         }
 
+        [Fact(DisplayName = "GetByIdAsync - Consulta customer inexistente por ID com sucesso")]
+        public async Task GetByIdAsync_ContactNaoRegistrado_DeveRetornarNull()
+        {
+            //Arrange
+            InstantiateMocks();
+
+            var phonebookService = new PhonebookService(_contactRepository.Object, _unitOfWork.Object, _mapper, _authService.Object, _contactValidator);
+
+            //Act
+            var result = await phonebookService.GetContact(10);
+
+            //Assert
+            _contactRepository.Verify(r => r.GetById(It.IsAny<int>()), Times.Once);
+
+            result.Should().BeNull();
+        }
+
+        [Fact(DisplayName = "Register - Cadastra com sucesso")]
+        public async Task RegisterAsync_RegistraContact_DeveRetornarSucesso()
+        {
+            //Arrange
+            InstantiateMocks();
+
+            var customerRegister = ContactRegisterRequestFaker.CustomerRegisterRequestGenerate();
+
+            var phonebookService = new PhonebookService(_contactRepository.Object, _unitOfWork.Object, _mapper, _authService.Object, _contactValidator);
+
+            //Act
+            var result = await phonebookService.AddContact(customerRegister);
+
+            //Assert
+            _contactRepository.Verify(r => r.Add(It.IsAny<Contact>()), Times.Once);
+            _unitOfWork.Verify(r => r.Save(), Times.Once);
+
+            result.Should().NotBeNull();
+        }
     }
 
 

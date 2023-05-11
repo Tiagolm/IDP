@@ -31,7 +31,6 @@
   <ItemGroup>
     <Folder Include="Application\Validators\" />
     <Folder Include="Fakers\Application\" />
-    <Folder Include="Fakers\Requests\" />
   </ItemGroup>
 
   <ItemGroup>
