@@ -92,7 +92,7 @@ namespace Tests.Application.Services
             //Arrange
             InstantiateMocks();
 
-            var customerRegister = ContactRegisterRequestFaker.CustomerRegisterRequestGenerate();
+            var customerRegister = ContactRegisterRequestFaker.ContactRegisterRequestGenerate();
 
             var phonebookService = new PhonebookService(_contactRepository.Object, _unitOfWork.Object, _mapper, _authService.Object, _contactValidator);
 

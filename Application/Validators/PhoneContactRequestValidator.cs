@@ -35,9 +35,9 @@ namespace Application.Validators
                 .WithMessage("{PropertyName}: {PropertyValue} - Telefone celular inválido: (xx) xxxxx-xxxx")
                 .When(vm => vm.PhoneContactTypeId == PhoneContactType.Celular.Id);
 
-            RuleFor(x => x.FormattedPhone)
-                .MustAsync(contactRepository.PhoneExists)
-                .WithMessage("Telefone já existe {PropertyName}: {PropertyValue}");
+            //RuleFor(x => x.FormattedPhone)
+            //    .MustAsync(contactRepository.PhoneExists)
+            //    .WithMessage("Telefone já existe {PropertyName}: {PropertyValue}");
         }
     }
 }

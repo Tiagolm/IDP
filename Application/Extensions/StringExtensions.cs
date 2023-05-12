@@ -16,12 +16,12 @@ namespace Application.Extensions
 
         public static bool ValidatePhone(this string formattedPhone)
         {
-            return new Regex(@"^\([1-9]{2}\) (?:[2-8]|9[1-9])[0-9]{3}\-[0-9]{4}$").IsMatch(formattedPhone);
+            return new Regex(@"^\([0-9]{2}\) (?:[0-9]|9[0-9])[0-9]{3}\-[0-9]{4}$").IsMatch(formattedPhone);
         }
 
         public static bool ValidateHomePhone(this string formattedPhone)
         {
-            return new Regex(@"^\([1-9]{2}\) [2-8]{4}\-[0-9]{4}$").IsMatch(formattedPhone);
+            return new Regex(@"^\([0-9]{2}\) [0-9]{4}\-[0-9]{4}$").IsMatch(formattedPhone);
         }
 
         public static bool ValidateCellPhone(this string formattedPhone)

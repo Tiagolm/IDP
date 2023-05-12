@@ -12,7 +12,7 @@ namespace Tests.Fakers.Requests.ContactRequests
 {
     public static class ContactRegisterRequestFaker
     {
-        public static ContactRequest CustomerRegisterRequestGenerate()
+        public static ContactRequest ContactRegisterRequestGenerate()
         {
             var customer = new Faker<ContactRequest>("pt_BR")
                     .RuleFor(p => p.Name, p => p.Person.FullName)
@@ -26,9 +26,9 @@ namespace Tests.Fakers.Requests.ContactRequests
         {
             var phones = new Faker<PhoneContactRequest>("pt_BR")
                    .CustomInstantiator(f => Activator.CreateInstance(typeof(PhoneContactRequest), nonPublic: true) as PhoneContactRequest)
-                   .RuleFor(p => p.FormattedPhone, p => p.Phone.PhoneNumberFormat())
-                   .RuleFor(p => p.Description, p => p.Lorem.Text())
-                   .RuleFor(p => p.PhoneContactTypeId, p => 3)
+                   .RuleFor(p => p.FormattedPhone, p => p.Phone.PhoneNumberFormat(0))
+                   .RuleFor(p => p.Description, p => p.Lorem.Sentences(1))
+                   .RuleFor(p => p.PhoneContactTypeId, p => 1)
                    .GenerateBetween(1, 5);
 
             return phones;
