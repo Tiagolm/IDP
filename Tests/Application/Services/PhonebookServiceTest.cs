@@ -20,7 +20,7 @@ using Xunit;
 
 namespace Tests.Application.Services
 {
-    [Trait("TestType", "Unit")]
+    [Trait("Phonebook", "Service")]
     public class PhonebookServiceTest : ServiceBaseTest
     {
         private Mock<IContactRepository> _contactRepository;
@@ -91,8 +91,12 @@ namespace Tests.Application.Services
         {
             //Arrange
             InstantiateMocks();
-
+            var contact = ContactFaker.ContactGenerate();
             var customerRegister = ContactRegisterRequestFaker.ContactRegisterRequestGenerate();
+
+            _authService.SetupGet(x => x.LoggedUser.Id).Returns(1);
+
+            _contactRepository.Setup(x => x.GetById(It.IsAny<int>())).Returns(Task.FromResult(contact));
 
             var phonebookService = new PhonebookService(_contactRepository.Object, _unitOfWork.Object, _mapper, _authService.Object, _contactValidator);
 
@@ -101,7 +105,7 @@ namespace Tests.Application.Services
 
             //Assert
             _contactRepository.Verify(r => r.Add(It.IsAny<Contact>()), Times.Once);
-            _unitOfWork.Verify(r => r.Save(), Times.Once);
+            _unitOfWork.Verify(r => r.Save(), Times.Exactly(2));
 
             result.Should().NotBeNull();
         }
