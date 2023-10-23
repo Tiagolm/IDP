@@ -13,6 +13,7 @@ using Infrastructure;
 using Infrastructure.Auth;
 using Infrastructure.Data;
 using Infrastructure.Repository;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -131,6 +132,8 @@ namespace IDP
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Agenda.API v1"));
             }
+
+            DatabaseManagementService.MigrationInitialisation(app);
 
             app.UseHttpsRedirection();
             app.UseRouting();
